@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Size Management</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../assets/vendors/font-awesome/css/font-awesome.min.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../../assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body {
+          color: #566787;
+          background: #f5f5f5;
+          font-family: 'Roboto', sans-serif;
+      }
+      .table-responsive {
+          margin: 30px 0;
+      }
+      .table-wrapper {
+          min-width: 1000px;
+          background: #fff;
+          padding: 20px;
+          box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      }
+      .table-title {
+          padding-bottom: 10px;
+          margin: 0 0 10px;
+          min-width: 100%;
+      }
+      .table-title h2 {
+          margin: 8px 0 0;
+          font-size: 22px;
+      }
+      .search-box {
+          position: relative;        
+          float: right;
+      }
+      .search-box input {
+          height: 34px;
+          border-radius: 20px;
+          padding-left: 35px;
+          border-color: #ddd;
+          box-shadow: none;
+      }
+      .search-box input:focus {
+          border-color: #3FBAE4;
+      }
+      .search-box i {
+          color: #a0a5b1;
+          position: absolute;
+          font-size: 19px;
+          top: 8px;
+          left: 10px;
+      }
+      table.table tr th, table.table tr td {
+          border-color: #e9e9e9;
+      }
+      table.table-striped tbody tr:nth-of-type(odd) {
+          background-color: #fcfcfc;
+      }
+      table.table-striped.table-hover tbody tr:hover {
+          background: #f5f5f5;
+      }
+      table.table th i {
+          font-size: 13px;
+          margin: 0 5px;
+          cursor: pointer;
+      }
+      table.table td:last-child {
+          width: 130px;
+      }
+      table.table td a {
+          color: #a0a5b1;
+          display: inline-block;
+          margin: 0 5px;
+      }
+      table.table td a.view {
+          color: #03A9F4;
+      }
+      table.table td a.edit {
+          color: #FFC107;
+      }
+      table.table td a.delete {
+          color: #E34724;
+      }
+      table.table td i {
+          font-size: 19px;
+      }    
+      .pagination {
+          float: right;
+          margin: 0 0 5px;
+      }
+      .pagination li a {
+          border: none;
+          font-size: 95%;
+          width: 30px;
+          height: 30px;
+          color: #999;
+          margin: 0 2px;
+          line-height: 30px;
+          border-radius: 30px !important;
+          text-align: center;
+          padding: 0;
+      }
+      .pagination li a:hover {
+          color: #666;
+      }	
+      .pagination li.active a {
+          background: #03A9F4;
+      }
+      .pagination li.active a:hover {        
+          background: #0397d6;
+      }
+      .pagination li.disabled i {
+          color: #ccc;
+      }
+      .pagination li i {
+          font-size: 16px;
+          padding-top: 6px
+      }
+      .hint-text {
+          float: left;
+          margin-top: 6px;
+          font-size: 95%;
+      }    
+      </style>
+      <script>
+      $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+      </script>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+          <a class="navbar-brand brand-logo" href="../../index.html">Admin Dashboard</a>
+          <a class="navbar-brand brand-logo-mini" href="../../index.html" style="color: #000;">Admin Dashboard</a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="nav-profile-text">
+                  <p class="mb-1 text-black user_name"></p>
+                </div>
+              </a>
+              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item btn-sign-out" href="../login/dangNhap.html">
+                  <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+              </div>
+            </li>
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link">
+                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+              </a>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="icons">
+                <span class="menu-title">Users</span>
+                <i class="mdi mdi-contacts menu-icon"></i>
+              </a>
+              <div class="collapse" id="users">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../users/users_management.html">Users Management</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="icons">
+                <span class="menu-title">Categories</span>
+                <i class="mdi mdi-basket menu-icon"></i>
+              </a>
+              <div class="collapse" id="categories">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../categories/categories_management.html">Categories Management</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#colors" aria-expanded="false" aria-controls="icons">
+                <span class="menu-title">Colors</span>
+                <i class="mdi mdi-border-color menu-icon"></i>
+              </a>
+              <div class="collapse" id="colors">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../colors/color.html">Colors Management</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#sizes" aria-expanded="false" aria-controls="icons">
+                <span class="menu-title">Sizes</span>
+                <i class="mdi mdi-move-resize menu-icon"></i>
+              </a>
+              <div class="collapse" id="sizes">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./size.html">Sizes Management</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#posts" aria-expanded="false" aria-controls="forms">
+                <span class="menu-title">Posts</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              </a>
+              <div class="collapse" id="posts">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../posts/posts_management.html">Posts Management</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#orders" aria-expanded="false" aria-controls="tables">
+                <span class="menu-title">Orders</span>
+                <i class="mdi mdi-table-large menu-icon"></i>
+              </a>
+              <div class="collapse" id="orders">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../orders/orders_management.html">Orders Management</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Sizes </h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Sizes</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Sizes Management</li>
+                </ol>
+              </nav>
+            </div>
+            
+            <div class="row">
+              <div class="col-md grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body" id="add_size">
+                    <div class="table-title">
+                      <div class="row">
+                          <div class="col-sm"><h2>Sizes Table</h2></div>
+                          <div class="col-sm-6 d-flex justify-content-end" id="button_add">
+                            <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                        </div>
+                    </div>
+                      </div>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> STT </th>
+                            <th> Name </th>
+                            <th> Actions </th>
+                          </tr>
+                        </thead>
+                        <tbody id="table">
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 By Group 06_LTW_PTIT</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="../../assets/vendors/chart.js/chart.umd.js"></script>
+    <script src="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+    <script src="../../assets/js/settings.js"></script>
+    <script src="../../assets/js/todolist.js"></script>
+    <script src="../../assets/js/jquery.cookie.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="../../assets/js/dashboard.js"></script>
+    <script src="../../assets/js/size.js"></script>
+    <!-- End custom js for this page -->
+  </body>
+</html>
