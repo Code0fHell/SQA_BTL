@@ -1,6 +1,6 @@
 # Lập trình web
 
-Trang web bán hàng thực phẩm
+Trang web bán quần áo
 
 ## Công nghệ sử dụng
 
